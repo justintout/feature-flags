@@ -1,13 +1,13 @@
 {
   "name": "@justintout/feature-flags",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Simple feature flags",
   "main": "dist/features.js",
   "types": "dist/features.d.ts",
   "scripts": {
     "test": "mocha -r ts-node/register src/**.test.ts",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepublish": "npm run test && npm run build"
   },
   "keywords": [
     "feature",

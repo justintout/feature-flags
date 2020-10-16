@@ -1,12 +1,12 @@
 # feature-flags
 > Simple feature flags
 
-`feature-enabled` exports a singleton `Features` that allows you to manage boolean feature flags.
+`@justintout/feature-flags` exports a singleton `Features` that allows you to manage boolean feature flags.
 
 ## Installation
 
 ```
-npm i feature-enabled
+npm i @justintout/feature-flags
 ```
 
 ## Usage 
@@ -18,11 +18,15 @@ Features.add(
     {name: 'debugMode', enabled: false, onToggled: (_) => console.info('debug mode has been enabled!')}
 );
 
+Features.listen();
+
 if (Features.enabled('debugMode')) {
     console.info('debug mode is enabled!');
 }
 
 Features.toggle('debugMode');
+
+window.emit
 ```
 
 ### Features
