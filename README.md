@@ -25,8 +25,6 @@ if (Features.enabled('debugMode')) {
 }
 
 Features.toggle('debugMode');
-
-window.emit
 ```
 
 ### Features
