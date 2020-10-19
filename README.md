@@ -72,6 +72,17 @@ Get the state of all features with `Features.status()`. This returns an object w
 { debugMode: true }
 ```
 
+### Toggle features across the global scope
+
+It may be helpful to be able to toggle features outside of the package itself. Calling `Features.listen()` will add a function `toggleFeature()` to global scope. This would allow a debug page to change feature settings on the fly. 
+
+``` 
+> Features.listen();
+undefined
+> global.toggleFeature('debugMode');
+true
+```
+
 ## Contributing
 
 Pull requests are welcome. 
