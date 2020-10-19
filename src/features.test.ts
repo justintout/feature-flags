@@ -17,7 +17,7 @@ const fs = [
 
 Features.add(...fs);
 
-describe('feature-enabled', () => {
+describe('feature-flags', () => {
     describe('status()', () => {
         it('should return an object with only added features for keys', () => {
             const status = Features.status();
@@ -70,6 +70,19 @@ describe('feature-enabled', () => {
         it('should return false for features that don\'t exist', () => {
             const e = Features.toggle('fake')
             e.should.be.false;
+        });
+    });
+
+    describe('listen()', () => {
+        it ('should add toggleFeature globalThis', () => {
+            Features.listen();
+            // @ts-ignore
+            globalThis['toggleFeature'].should.not.be.undefined;
+        });
+        it ('should remove toggleFeature when passed false', () => {
+            Features.listen(false);
+            // @ts-ignore
+            (typeof globalThis['toggleFeature']).should.equal('undefined');
         });
     });
 });
