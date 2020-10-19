@@ -58,10 +58,15 @@ class FeatureFlags {
     /**
      * Adds a `toggleFeature()` function to global scope.
      */
-    listen(): void {
-        console.log(typeof globalThis);
-        console.log(typeof window);
-        console.log(typeof global);
+    listen(start?: boolean): void {
+        if (start === false) {
+            FeatureFlags.instance.removeListener();
+            return;
+        }
+        FeatureFlags.instance.attachListener();
+    }
+
+    private attachListener() {
         if (typeof window !== 'undefined') {
             window.toggleFeature = (name: string) => {
                 FeatureFlags.instance.toggle(name);
@@ -73,6 +78,15 @@ class FeatureFlags {
             }
         }
     }
+
+    private removeListener() {
+        if (typeof window !== 'undefined') {
+            delete window.toggleFeature;
+        }
+        if (typeof global !== 'undefined') {
+            delete global.toggleFeature;
+        }
+    }
 }
 
 export const Features = new FeatureFlags();
@@ -80,10 +94,10 @@ export const Features = new FeatureFlags();
 declare global {
     namespace NodeJS {
         interface Global {
-            toggleFeature(name: string): void;
+            toggleFeature?: (name: string) => void;
         }
     }
     interface Window {
-        toggleFeature(name: string): void; 
+        toggleFeature?: (name: string) => void; 
     }
 }

@@ -74,7 +74,9 @@ Get the state of all features with `Features.status()`. This returns an object w
 
 ### Toggle features across the global scope
 
-It may be helpful to be able to toggle features outside of the package itself. Calling `Features.listen()` will add a function `toggleFeature()` to global scope. This would allow a debug page to change feature settings on the fly. 
+It may be helpful to be able to toggle features outside of the package itself. Calling `Features.listen()` will add a function `toggleFeature()` to global scope. This would allow a debug page to change feature settings on the fly.
+
+Passing `false` will remote `toggleFeatures()`.
 
 ``` 
 > Features.listen();
